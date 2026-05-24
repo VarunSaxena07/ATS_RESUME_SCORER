@@ -2,9 +2,11 @@ import contextlib
 import importlib
 import io
 import logging
+import os
 import re
 import textwrap
 from html.parser import HTMLParser
+from pathlib import Path
 
 WEASYPRINT_INSTALLED = False
 _WEASYPRINT_IMPORT_ERROR: Exception | None = None
@@ -46,6 +48,7 @@ def _get_weasyprint_html():
         return None
 
     try:
+        _configure_weasyprint_dll_directories()
         # WeasyPrint prints native-library guidance during import when
         # GTK/Pango DLLs are missing on Windows. Capture it and use our fallback.
         with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
@@ -57,6 +60,24 @@ def _get_weasyprint_html():
         _WEASYPRINT_IMPORT_ERROR = exc
         WEASYPRINT_INSTALLED = False
         return None
+
+
+def _configure_weasyprint_dll_directories() -> None:
+    if os.environ.get('WEASYPRINT_DLL_DIRECTORIES'):
+        return
+
+    candidates = [
+        Path('D:/msys/mingw64/bin'),
+        Path('C:/msys64/mingw64/bin'),
+        Path('C:/Program Files/GTK3-Runtime Win64/bin'),
+    ]
+    dll_dirs = [
+        str(path)
+        for path in candidates
+        if (path / 'libgobject-2.0-0.dll').exists()
+    ]
+    if dll_dirs:
+        os.environ['WEASYPRINT_DLL_DIRECTORIES'] = ';'.join(dll_dirs)
 
 
 def _log_fallback_once() -> None:

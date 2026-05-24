@@ -5,3 +5,4 @@ __pycache__/
 .env.*
 backend/.env
 .streamlit/secrets.toml
+**/.streamlit/secrets.toml
