@@ -181,3 +181,4 @@
 2026-05-24 13:13:33,518 - INFO - Loading SentenceTransformer: all-MiniLM-L6-v2
 2026-05-24 13:13:50,403 - INFO - Loaded all-MiniLM-L6-v2
 2026-05-24 13:13:50,403 - INFO - All models loaded. API is ready to serve requests.
+2026-05-24 13:17:13,337 - INFO - shutting down the api!!
