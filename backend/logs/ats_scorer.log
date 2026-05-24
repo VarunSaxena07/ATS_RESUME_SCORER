@@ -152,3 +152,18 @@
 2026-05-24 12:45:38,592 - INFO - Saved analysis for user 49cc9eb8-0be6-47a4-8b2b-4f6da20ee690: 4
 2026-05-24 12:45:45,478 - WARNING - WeasyPrint unavailable; using plain-text PDF fallback. Install GTK/Pango native libraries for styled reports. Reason: cannot load library 'libgobject-2.0-0': error 0x7e.
 2026-05-24 12:50:52,308 - INFO - shutting down the api!!
+2026-05-24 12:50:54,455 - INFO - Starting ATS Resume Analyzer API...
+2026-05-24 12:50:54,455 - INFO - Loading spaCy NLP model: en_core_web_md
+2026-05-24 12:50:59,333 - INFO - Loaded en_core_web_md
+2026-05-24 12:50:59,333 - INFO - Loading SentenceTransformer: all-MiniLM-L6-v2
+2026-05-24 12:51:13,452 - INFO - Loaded all-MiniLM-L6-v2
+2026-05-24 12:51:13,452 - INFO - All models loaded. API is ready to serve requests.
+2026-05-24 12:53:48,796 - INFO - parse_Resume_file: parsing file :Varun_Saxena_DS_Resume.pdf
+2026-05-24 12:53:48,796 - INFO - resume_parser: python-magic unavailable; using file signature fallback: failed to find libmagic.  Check your installation
+2026-05-24 12:53:49,001 - INFO - parse_resume_file: Extracted 3962 chars from Varun_Saxena_DS_Resume.pdf
+2026-05-24 12:53:49,001 - INFO - Parsed 'Varun_Saxena_DS_Resume.pdf': 3962 chars extracted
+2026-05-24 12:53:51,610 - WARNING - Groq resume parse: first attempt returned invalid JSON, retrying...
+2026-05-24 12:53:53,184 - INFO - Groq parsed summary: ''
+2026-05-24 12:53:53,184 - INFO - Groq parsed skills count: 35
+2026-05-24 12:53:53,184 - INFO - Groq parsed experience count: 0
+2026-05-24 12:54:00,778 - INFO - Saved analysis for user 49cc9eb8-0be6-47a4-8b2b-4f6da20ee690: 5
