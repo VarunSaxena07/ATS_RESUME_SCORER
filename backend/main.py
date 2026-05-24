@@ -92,7 +92,16 @@ async def root():
         },
     }
 
-if __name__=='__main__':
+
+def _running_under_streamlit() -> bool:
+    try:
+        from streamlit.runtime.scriptrunner_utils.script_run_context import get_script_run_ctx
+    except Exception:
+        return False
+    return get_script_run_ctx() is not None
+
+
+if __name__ == '__main__' and not _running_under_streamlit():
     import uvicorn
     uvicorn.run(
         'backend.main:app',
