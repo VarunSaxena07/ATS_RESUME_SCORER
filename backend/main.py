@@ -24,15 +24,8 @@ logger=logging.getLogger('ats_resume_scorer')
 async def lifespan(app:FastAPI):
     logger.info('Starting ATS Resume Analyzer API...')
 
-    logger.info(f'Loading spaCy NLP model: {SPACY_MODEL_PRIMARY}')
     import spacy
-    try:
-        app.state.nlp = spacy.load(SPACY_MODEL_PRIMARY)
-        logger.info(f'Loaded {SPACY_MODEL_PRIMARY}')
-    except OSError:
-        logger.warning(f'{SPACY_MODEL_PRIMARY} not found — falling back to {SPACY_MODEL_SECONDARY}')
-        app.state.nlp = spacy.load(SPACY_MODEL_SECONDARY)
-        logger.info(f'Loaded {SPACY_MODEL_SECONDARY} (fallback)')
+    app.state.nlp = _load_spacy_model(spacy)
 
     logger.info(f'Loading SentenceTransformer: {SENTENCE_TRANSFORMER_MODEL}')
     from sentence_transformers import SentenceTransformer
@@ -44,6 +37,26 @@ async def lifespan(app:FastAPI):
     yield
 
     logger.info('shutting down the api!!')
+
+
+def _load_spacy_model(spacy):
+    for model_name in (SPACY_MODEL_PRIMARY, SPACY_MODEL_SECONDARY):
+        model_name = model_name.strip().strip('"').strip("'")
+        if not model_name:
+            continue
+        logger.info(f'Loading spaCy NLP model: {model_name}')
+        try:
+            nlp = spacy.load(model_name)
+            logger.info(f'Loaded {model_name}')
+            return nlp
+        except OSError as exc:
+            logger.warning(f'{model_name} not found: {exc}')
+
+    logger.warning(
+        'No spaCy English model found; using blank English pipeline. '
+        'NER-based checks will be limited until en_core_web_sm or en_core_web_md is installed.'
+    )
+    return spacy.blank('en')
 
 app=FastAPI(
     title=APP_TITLE, 

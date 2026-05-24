@@ -182,3 +182,8 @@
 2026-05-24 13:13:50,403 - INFO - Loaded all-MiniLM-L6-v2
 2026-05-24 13:13:50,403 - INFO - All models loaded. API is ready to serve requests.
 2026-05-24 13:17:13,337 - INFO - shutting down the api!!
+2026-05-24 13:26:52,161 - INFO - Loading spaCy NLP model: missing_model_a
+2026-05-24 13:26:52,162 - WARNING - missing_model_a not found: [E050] Can't find model 'missing_model_a'. It doesn't seem to be a Python package or a valid path to a data directory.
+2026-05-24 13:26:52,162 - INFO - Loading spaCy NLP model: missing_model_b
+2026-05-24 13:26:52,162 - WARNING - missing_model_b not found: [E050] Can't find model 'missing_model_b'. It doesn't seem to be a Python package or a valid path to a data directory.
+2026-05-24 13:26:52,163 - WARNING - No spaCy English model found; using blank English pipeline. NER-based checks will be limited until en_core_web_sm or en_core_web_md is installed.
