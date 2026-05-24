@@ -177,3 +177,7 @@
 2026-05-24 13:13:27,416 - INFO - shutting down the api!!
 2026-05-24 13:13:29,294 - INFO - Starting ATS Resume Analyzer API...
 2026-05-24 13:13:29,294 - INFO - Loading spaCy NLP model: en_core_web_md
+2026-05-24 13:13:33,518 - INFO - Loaded en_core_web_md
+2026-05-24 13:13:33,518 - INFO - Loading SentenceTransformer: all-MiniLM-L6-v2
+2026-05-24 13:13:50,403 - INFO - Loaded all-MiniLM-L6-v2
+2026-05-24 13:13:50,403 - INFO - All models loaded. API is ready to serve requests.
